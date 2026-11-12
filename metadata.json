@@ -1,0 +1,6 @@
+{
+  "name": "MovieNest",
+  "description": "Premium movie and TV streaming web application with TMDB discovery, CineSrc playback, Live TV, and VIP membership.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

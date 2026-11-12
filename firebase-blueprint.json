@@ -1,0 +1,161 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile document",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 256 },
+        "displayName": { "type": "string", "maxLength": 100 },
+        "photoURL": { "type": "string", "maxLength": 1024 },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "isVIP": { "type": "boolean" },
+        "vipExpiresAt": { "type": "string", "maxLength": 64 },
+        "createdAt": { "type": "string", "maxLength": 64 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["uid", "email"]
+    },
+    "WatchlistItem": {
+      "title": "WatchlistItem",
+      "description": "User saved movie or TV show",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "mediaId": { "type": "string", "maxLength": 64 },
+        "mediaType": { "type": "string", "enum": ["movie", "tv"] },
+        "title": { "type": "string", "maxLength": 256 },
+        "posterPath": { "type": "string", "maxLength": 512 },
+        "voteAverage": { "type": "number" },
+        "releaseDate": { "type": "string", "maxLength": 32 },
+        "addedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "mediaId", "mediaType", "title"]
+    },
+    "WatchHistoryItem": {
+      "title": "WatchHistoryItem",
+      "description": "User playback history entry",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "mediaId": { "type": "string", "maxLength": 64 },
+        "mediaType": { "type": "string", "enum": ["movie", "tv"] },
+        "title": { "type": "string", "maxLength": 256 },
+        "posterPath": { "type": "string", "maxLength": 512 },
+        "season": { "type": "number" },
+        "episode": { "type": "number" },
+        "watchedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "mediaId", "mediaType", "title"]
+    },
+    "Review": {
+      "title": "Review",
+      "description": "User review for movie or TV show",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userDisplayName": { "type": "string", "maxLength": 100 },
+        "userPhoto": { "type": "string", "maxLength": 1024 },
+        "mediaId": { "type": "string", "maxLength": 64 },
+        "mediaType": { "type": "string", "enum": ["movie", "tv"] },
+        "mediaTitle": { "type": "string", "maxLength": 256 },
+        "rating": { "type": "number" },
+        "content": { "type": "string", "maxLength": 2000 },
+        "createdAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "mediaId", "mediaType", "rating", "content"]
+    },
+    "PaymentRequest": {
+      "title": "PaymentRequest",
+      "description": "VIP subscription payment submission via bKash",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "userEmail": { "type": "string", "maxLength": 256 },
+        "planId": { "type": "string", "maxLength": 64 },
+        "planName": { "type": "string", "maxLength": 100 },
+        "amount": { "type": "number" },
+        "bKashNumber": { "type": "string", "maxLength": 32 },
+        "trxId": { "type": "string", "maxLength": 64 },
+        "status": { "type": "string", "enum": ["pending", "approved", "rejected"] },
+        "submittedAt": { "type": "string", "maxLength": 64 },
+        "reviewedAt": { "type": "string", "maxLength": 64 },
+        "reviewedBy": { "type": "string", "maxLength": 256 }
+      },
+      "required": ["userId", "userEmail", "planId", "amount", "trxId", "status"]
+    },
+    "LiveTvFavorite": {
+      "title": "LiveTvFavorite",
+      "description": "Saved favorite IPTV channel",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "channelId": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 256 },
+        "logo": { "type": "string", "maxLength": 1024 },
+        "country": { "type": "string", "maxLength": 10 },
+        "category": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["userId", "channelId", "name"]
+    },
+    "ViewEvent": {
+      "title": "ViewEvent",
+      "description": "Real view event for analytics",
+      "type": "object",
+      "properties": {
+        "mediaId": { "type": "string", "maxLength": 64 },
+        "mediaType": { "type": "string", "enum": ["movie", "tv", "channel"] },
+        "title": { "type": "string", "maxLength": 256 },
+        "userId": { "type": "string", "maxLength": 128 },
+        "timestamp": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["mediaId", "mediaType", "title", "timestamp"]
+    },
+    "AdminSetting": {
+      "title": "AdminSetting",
+      "description": "Global website configuration",
+      "type": "object",
+      "properties": {
+        "settingKey": { "type": "string", "maxLength": 64 },
+        "value": { "type": "string", "maxLength": 8192 },
+        "updatedAt": { "type": "string", "maxLength": 64 }
+      },
+      "required": ["settingKey"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles"
+    },
+    "/watchlists/{watchlistId}": {
+      "schema": "WatchlistItem",
+      "description": "User watchlist items"
+    },
+    "/watchHistory/{historyId}": {
+      "schema": "WatchHistoryItem",
+      "description": "User watch history items"
+    },
+    "/reviews/{reviewId}": {
+      "schema": "Review",
+      "description": "User movie and TV reviews"
+    },
+    "/payments/{paymentId}": {
+      "schema": "PaymentRequest",
+      "description": "VIP bKash payment verification requests"
+    },
+    "/liveTvFavorites/{favoriteId}": {
+      "schema": "LiveTvFavorite",
+      "description": "Favorite Live TV channels"
+    },
+    "/viewEvents/{eventId}": {
+      "schema": "ViewEvent",
+      "description": "Analytics stream view events"
+    },
+    "/adminSettings/{settingId}": {
+      "schema": "AdminSetting",
+      "description": "Admin configuration settings"
+    }
+  }
+}

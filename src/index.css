@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: #07080e;
+    color: #f3f4f6;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  /* iOS 26 Smooth Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 9999px;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.28);
+  }
+}
+
+/* iOS 26 Liquid Glass Utility Classes */
+.ios-glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-glass-elevated {
+  background: rgba(16, 18, 30, 0.72);
+  backdrop-filter: blur(36px) saturate(180%);
+  -webkit-backdrop-filter: blur(36px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55), inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.28);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ios-glass-card {
+  background: rgba(255, 255, 255, 0.035);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28), inset 0 1px 0 0 rgba(255, 255, 255, 0.14);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s ease,
+              background-color 0.35s ease;
+  will-change: transform;
+}
+
+.ios-glass-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.24);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(239, 68, 68, 0.2), inset 0 1px 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.ios-glass-card:active {
+  transform: scale(0.96);
+  transition-duration: 0.15s;
+}
+
+.ios-glass-btn-primary {
+  background: linear-gradient(180deg, #ff2e43 0%, #d80517 100%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 6px 25px rgba(229, 9, 20, 0.45), inset 0 1px 1px rgba(255, 255, 255, 0.5);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              filter 0.2s ease;
+}
+
+.ios-glass-btn-primary:hover {
+  filter: brightness(1.12);
+  box-shadow: 0 10px 32px rgba(229, 9, 20, 0.65), inset 0 1px 1.5px rgba(255, 255, 255, 0.6);
+  transform: translateY(-1.5px) scale(1.02);
+}
+
+.ios-glass-btn-primary:active {
+  transform: scale(0.94);
+  filter: brightness(0.95);
+  transition-duration: 0.1s;
+}
+
+.ios-glass-btn-secondary {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.18), 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 0.25s ease,
+              border-color 0.25s ease,
+              box-shadow 0.25s ease;
+}
+
+.ios-glass-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px) scale(1.02);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.25), 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.ios-glass-btn-secondary:active {
+  transform: scale(0.94);
+  transition-duration: 0.1s;
+}
+
+.ios-pill-active {
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ========================================================
+   iOS 26 High-Performance Animation Engine
+   ======================================================== */
+
+/* 1. Page Transitions */
+@keyframes ios-page-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.995);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-ios-page-enter {
+  animation: ios-page-enter 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  will-change: opacity, transform;
+}
+
+/* 2. Fade-In and Slide-Up for Sections */
+@keyframes ios-fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-ios-fade-up {
+  animation: ios-fade-up 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* 3. Hero Banner Transitions */
+@keyframes ios-banner-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-ios-banner {
+  animation: ios-banner-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* 4. Modal and Popup Spring Scale */
+@keyframes ios-modal-enter {
+  0% {
+    opacity: 0;
+    transform: scale(0.93) translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-ios-modal {
+  animation: ios-modal-enter 0.36s cubic-bezier(0.34, 1.45, 0.64, 1) both;
+  will-change: opacity, transform;
+}
+
+@keyframes ios-backdrop-fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animate-ios-backdrop {
+  animation: ios-backdrop-fade 0.28s ease-out both;
+}
+
+/* 5. Tactile Button Tap Spring */
+@keyframes ios-spring-pop {
+  0% { transform: scale(1); }
+  28% { transform: scale(0.86); }
+  62% { transform: scale(1.18) translateY(-2px); }
+  82% { transform: scale(0.96) translateY(-0.5px); }
+  100% { transform: scale(1.1) translateY(-1px); }
+}
+
+.animate-ios-pop {
+  animation: ios-spring-pop 0.42s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+/* 6. Subtle Glowing Effect on Selected Buttons */
+@keyframes ios-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 16px rgba(239, 68, 68, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(239, 68, 68, 0.65), inset 0 1px 2px rgba(255, 255, 255, 0.65);
+  }
+}
+
+.ios-glow-active {
+  animation: ios-glow-pulse 2.8s ease-in-out infinite;
+}
+
+/* 7. Skeleton Shimmer Wave */
+@keyframes ios-skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ios-skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  background-size: 200% 100%;
+  animation: ios-skeleton-shimmer 1.8s ease-in-out infinite;
+}
+
+/* 8. Micro-Interaction Floating Breathing */
+@keyframes ios-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-ios-float {
+  animation: ios-float 3.5s ease-in-out infinite;
+}
+
+/* 9. Progressive Image Fade-In */
+.ios-img-fade {
+  transition: opacity 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
